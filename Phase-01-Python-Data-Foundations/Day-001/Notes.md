@@ -1,6 +1,7 @@
-Phase 1 → Day 001 → Session 1
-Topic: Why Python Dominates AI & Understanding the AI Ecosystem
+## Phase 1 → Day 001 → Session 1
 
+Topic: Why Python Dominates AI & Understanding the AI Ecosystem
+-----------------------------------------------------------------------------------
 Welcome to Phase 1.
 
 You've already completed Phase 0 (Orientation) and know what AI is and where you want to go. Now we begin building the technical foundation that every serious AI engineer stands on.
@@ -27,6 +28,7 @@ Deep Learning
 LLM Engineering
 RAG Systems
 AI Architecture
+
 Part 1: Why Python Dominates AI
 1. What is Python's role in AI?
 

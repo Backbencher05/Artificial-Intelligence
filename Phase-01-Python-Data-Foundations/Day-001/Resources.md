@@ -24,11 +24,13 @@ Do not study them deeply yet.
 
 
 
-NumPy
-Pandas
-Matplotlib
-Scikit-Learn
-PyTorch
-TensorFlow
-Transformers
-LangChain
+- NumPy
+- Pandas
+- Matplotlib
+- seaborn
+- Scikit-Learn
+- PyTorch
+- TensorFlow
+- Transformers
+- LangChain
+- CUDA-related packages
