@@ -21,7 +21,7 @@ Today we'll answer a deeper question:
 
 How can AI systems process millions or billions of numbers efficiently without writing nested Python loops everywhere?
 
-Session Goals
+# Session Goals
 
 By the end of today, you should understand:
 
@@ -32,7 +32,8 @@ Broadcasting
 Vectorized Computation
 Why AI code rarely contains explicit loops
 How NumPy operations map to future Deep Learning computations
-Part 1: Shape – The Most Important Attribute
+
+# Part 1: Shape – The Most Important Attribute
 
 When AI engineers debug models, one of the most common problems is:
 

@@ -1,5 +1,6 @@
-Day 004 Assignment (My Answers)
-Q1. Why is shape one of the most important concepts in AI systems?
+## Day 004 Assignment (My Answers)
+
+# Q1. Why is shape one of the most important concepts in AI systems?
 
 Shape describes the dimensions of an array, matrix, or tensor. It tells us how data is organized and how operations can be performed on that data.
 
@@ -50,8 +51,9 @@ Understand model architectures
 
 That is why shape is one of the most important concepts in AI systems.
 
-Q2. Explain the difference between Indexing vs Slicing with examples.
-Indexing
+# Q2. Explain the difference between Indexing vs Slicing with examples.
+
+# Indexing
 
 Indexing is used to access a single element from an array.
 
@@ -82,7 +84,7 @@ Output:
 
 Indexing returns a specific element at a specific position.
 
-Slicing
+## Slicing
 
 Slicing is used to retrieve multiple elements.
 
@@ -122,7 +124,7 @@ Slicing answers:
 
 "Give me this range of values."
 
-Q3. What is broadcasting? Why is it useful?
+# Q3. What is broadcasting? Why is it useful?
 
 Broadcasting is a NumPy feature that allows arrays with different shapes to participate in arithmetic operations without manually expanding them.
 
@@ -185,7 +187,7 @@ Simpler mathematical expressions
 
 Broadcasting allows us to work with tensors naturally and efficiently.
 
-Q4. Why are vectorized operations faster than Python loops?
+# Q4. Why are vectorized operations faster than Python loops?
 
 Vectorized operations are faster because the computation is executed in optimized low-level code (C/C++) instead of the Python interpreter.
 
@@ -230,7 +232,7 @@ Vectorization allows CPUs and GPUs to process large blocks of data simultaneousl
 
 This is one of the key reasons modern AI is computationally feasible.
 
-Q5. Explain how broadcasting and vectorization might be useful inside a neural network.
+## Q5. Explain how broadcasting and vectorization might be useful inside a neural network.
 
 Neural networks perform the same mathematical operations repeatedly across large amounts of data.
 

@@ -121,4 +121,30 @@ Better CPU utilization
 GPU acceleration
 Efficient handling of large datasets
 
-Without vectorization, modern AI training would be impractical.
+Without vectorization, modern AI training would be impractical. 
+
+
+
+## --------------------
+
+# A huge milestone happened today.
+
+For the first time, you can understand a real AI equation:
+
+output = X @ W + b
+
+A week ago this might have looked mysterious.
+
+Now you can identify:
+
+X → Input Data
+
+W → Learned Weights
+
+b → Bias
+
+@ → Matrix Multiplication
+
++ → Broadcasting
+
+This single equation sits at the heart of:
