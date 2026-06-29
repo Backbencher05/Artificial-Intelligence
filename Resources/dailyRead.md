@@ -148,3 +148,99 @@ b → Bias
 + → Broadcasting
 
 This single equation sits at the heart of:
+
+
+
+---------------------------------------------------------
+
+Row represents one observation (customer)
+Column represents one feature (Age, Salary, Department)
+
+Q3. Explain the difference between Row vs Column from an AI perspective.
+Row
+
+A row represents one complete observation or one data sample.
+
+Example:
+
+CustomerID	Age	Salary	Department
+101	25	50000	IT
+
+This single row describes one customer.
+
+In AI:
+
+One Row = One Training Example
+
+Each row is one input that the model learns from.
+
+Column
+
+A column represents one feature or attribute shared by all observations.
+
+Example:
+
+Age
+
+contains the age of every customer.
+
+Similarly:
+
+Salary
+
+contains the salary of every customer.
+
+In AI:
+
+One Column = One Feature
+
+Features are the inputs used by machine learning models to make predictions.
+
+AI Perspective
+
+Suppose we want to predict salary.
+
+Rows:
+
+Customer 1
+Customer 2
+Customer 3
+...
+
+Columns:
+
+Age
+Experience
+Education
+Department
+
+# The model learns patterns across columns using every row as a training example.
+
+Summary
+Row	            Column
+One observation	One feature
+One customer	Age
+One house	    Price
+One email	    Spam label
+One training sample	One model input feature
+
+
+
+
+# Final Cleaning Workflow
+
+Load Dataset
+        ↓
+Inspect (head, info, shape)
+        ↓
+Handle Missing Values
+        ↓
+Detect & Fix Invalid Values
+        ↓
+Remove Duplicates
+        ↓
+Verify Data Types
+        ↓
+Validate Final Dataset
+        ↓
+Ready for Feature Engineering and Model Training
