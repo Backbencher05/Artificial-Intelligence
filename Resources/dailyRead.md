@@ -244,3 +244,33 @@ Verify Data Types
 Validate Final Dataset
         ↓
 Ready for Feature Engineering and Model Training
+
+
+# Exploratory Data Analysis (EDA)
+Exploratory Data Analysis (EDA) is the process of understanding your dataset before building any machine learning model.
+
+Load Dataset
+       ↓
+Inspect (head, info, shape)
+       ↓
+Summary Statistics (describe)
+       ↓
+Check Missing Values
+       ↓
+Check Duplicates
+       ↓
+Histograms
+       ↓
+Scatter Plots
+       ↓
+Analyze Categorical Features
+       ↓
+Correlation Matrix
+       ↓
+Document Insights
+       ↓
+Feature Engineering
+       ↓
+Train Machine Learning Model
+
+EDA sits between cleaning and modeling.

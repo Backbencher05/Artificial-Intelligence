@@ -638,8 +638,7 @@ You'll discover something surprising:
 
 This is very close to reality.
 
-Day 009
-Exploratory Data Analysis (EDA)
+# Day 009 Exploratory Data Analysis (EDA)
 
 This is where engineers become analysts.
 
@@ -655,8 +654,8 @@ Correlation
 Distributions
 Trends
 Feature Understanding
-Day 010–011
-Mini Real Dataset Project
+
+# Day 010–011 Mini Real Dataset Project
 
 You will combine:
 
@@ -701,7 +700,7 @@ X @ W + b
 What Happens After Phase 1?
 
 This is where things become exciting.
-
+---------------------------------------------------------------------
 Phase 2
 Machine Learning Foundations
 
