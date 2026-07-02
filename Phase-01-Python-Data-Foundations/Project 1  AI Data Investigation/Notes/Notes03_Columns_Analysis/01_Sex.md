@@ -1,3 +1,9 @@
+# All Columns
+- 
+
+
+
+
 Excellent.
 
 Now we enter what I consider **the heart of EDA**.
@@ -81,7 +87,7 @@ We're asking questions.
 Let's start with:
 
 ```text
-Sex
+# Sex
 ```
 
 Why not Age?
@@ -453,3 +459,4 @@ We're slowing down and asking:
 By the time we finish investigating the major features (`Sex`, `Age`, `Pclass`, `Fare`, `Embarked`), you'll have a mental model of the dataset—not just a notebook full of charts.
 
 And that mental model is what will make Phase 2 (Machine Learning) much more intuitive, because you'll already understand the data before asking a model to learn from it.
+

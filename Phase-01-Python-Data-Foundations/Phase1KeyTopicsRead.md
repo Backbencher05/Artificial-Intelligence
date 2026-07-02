@@ -1244,3 +1244,72 @@ Whenever you see `normalize=True`, remember this simple rule:
 
 As an AI engineer, you'll use the normalized version frequently because **percentages make it much easier to understand class balance**, which is important for tasks like checking whether a classification dataset is imbalanced before training a model.
 
+
+
+
+
+
+
+
+
+------------------------------------------------------------------
+
+
+Feature Type
+
+↓
+
+Distribution
+
+↓
+
+Balance
+
+↓
+
+Hypothesis
+
+↓
+
+Future Encoding
+
+↓
+
+Future ML
+
+
+
+# Whenever you receive a new dataset in the future, you'll naturally think:
+
+Step 1
+What does each row represent?
+
+↓
+
+Step 2
+What does each column represent?
+
+↓
+
+Step 3
+Can I trust the data?
+
+↓
+
+Step 4
+Investigate each feature individually.
+
+↓
+
+Step 5
+Investigate relationships between features.
+
+↓
+
+Step 6
+Engineer better features.
+
+↓
+
+Step 7
+Only then build the model.
