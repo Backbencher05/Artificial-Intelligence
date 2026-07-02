@@ -780,6 +780,10 @@ For example:
 If you remember those four words, you'll be able to classify almost every feature you encounter in AI and Machine Learning.
 
 
+| Feature Type | Common Imputation |
+| ------------ | ----------------- |
+| Numerical    | Mean / Median     |
+| Categorical  | Mode              |
 
 
 ------------------------------------------------------------
@@ -1313,3 +1317,331 @@ Engineer better features.
 
 Step 7
 Only then build the model.
+
+------------------------------------------------------------
+# What Is Skewness?
+
+Imagine plotting salaries.
+
+Most people earn:
+
+30K
+40K
+50K
+60K
+
+A few CEOs earn:
+
+5 Million
+
+Those few large values stretch the graph to the right.
+
+The same thing can happen with ticket fares.
+
+Most passengers paid modest fares.
+
+A few paid very high fares.
+
+# First Introduction to Skewness
+
+You don't need the formal definition yet.
+
+Just remember this intuition:
+Most values
+███████████
+
+Few values
+          █
+            █
+              █
+                █
+
+
+The "tail" stretches to one side.
+
+That's a skewed distribution.
+
+Why Does This Matter in AI?
+
+Imagine training a model.
+
+One passenger paid:
+
+512
+
+Most passengers paid:
+
+7
+15
+20
+30
+
+If we ignore this, that large value may influence some algorithms more than we expect.
+
+Later, we'll learn techniques like:
+
+Scaling
+Normalization
+Log transformation
+
+But today, we only want to notice the pattern.
+
+🌟 Mentor Feedback
+
+The mean doesn't always tell the full story.
+
+Imagine these five fares:
+
+7
+8
+9
+10
+500
+
+The average is:
+
+106.8
+
+Does 106.8 represent what most passengers paid?
+
+Not at all.
+
+Four out of five passengers paid 10 or less.
+
+That's why AI engineers always look at:
+
+Mean
+Median
+Histogram
+
+together, not individually.
+
+A good habit to develop is:
+
+If Mean ≈ Median
+        ↓
+Distribution is often fairly symmetric.
+
+If Mean >> Median
+        ↓
+Suspect a right-skewed distribution.
+
+If Mean << Median
+        ↓
+Suspect a left-skewed distribution.
+
+This habit will become extremely valuable when you begin feature engineering, because skewed numerical features often require special preprocessing before training machine learning models.
+
+
+
+-----------------------------------------------------------------------------------------------------------------
+
+# method for checking null value in particular column
+--------------------------------------------------------------
+
+There are several ways to inspect the missing values in the **`Embarked`** column. Here are the most useful ones.
+
+---
+
+## Method 1: Show only the rows where `Embarked` is missing ⭐ (Most Common)
+
+```python
+df[df["Embarked"].isnull()]
+```
+
+### What happens?
+
+First:
+
+```python
+df["Embarked"].isnull()
+```
+
+returns something like:
+
+```text
+0      False
+1      False
+2      False
+...
+61      True
+...
+829     True
+```
+
+Then:
+
+```python
+df[ ... ]
+```
+
+filters the DataFrame and keeps only the rows where the value is `True`.
+
+Output (approximately):
+
+| PassengerId | Name | Pclass | Sex | Age | Fare | Embarked |
+| ----------- | ---- | ------ | --- | --- | ---- | -------- |
+| ...         | ...  | ...    | ... | ... | ...  | NaN      |
+| ...         | ...  | ...    | ... | ... | ...  | NaN      |
+
+Since you already know there are only **2 missing values**, you'll see exactly **2 rows**.
+
+---
+
+## Method 2: Count Missing Values
+
+```python
+df["Embarked"].isnull().sum()
+```
+
+Output:
+
+```text
+2
+```
+
+This tells you there are **2 missing values**.
+
+---
+
+## Method 3: Show Only the Embarked Column
+
+```python
+df.loc[df["Embarked"].isnull(), ["Embarked"]]
+```
+
+Output:
+
+| Embarked |
+| -------- |
+| NaN      |
+| NaN      |
+
+---
+
+## Method 4: Show Selected Useful Columns
+
+This is the one AI engineers often use.
+
+```python
+df.loc[df["Embarked"].isnull(),
+       ["PassengerId", "Name", "Pclass", "Sex", "Age", "Fare", "Embarked"]]
+```
+
+Output:
+
+| PassengerId | Name | Pclass | Sex | Age | Fare | Embarked |
+| ----------- | ---- | ------ | --- | --- | ---- | -------- |
+| ...         | ...  | ...    | ... | ... | ...  | NaN      |
+| ...         | ...  | ...    | ... | ... | ...  | NaN      |
+
+This gives you enough context to decide how to handle the missing values.
+
+---
+
+## Method 5: Get the Row Numbers (Indexes)
+
+```python
+df[df["Embarked"].isnull()].index
+```
+
+Output:
+
+```text
+Index([61, 829], dtype='int64')
+```
+
+Now you know exactly which rows contain the missing values.
+
+---
+
+# 🧠 Mentor Tip
+
+As a backend engineer, think of this as querying a database.
+
+Instead of writing SQL:
+
+```sql
+SELECT *
+FROM passengers
+WHERE Embarked IS NULL;
+```
+
+In Pandas, you write:
+
+```python
+df[df["Embarked"].isnull()]
+```
+
+The concepts are almost identical:
+
+| SQL                      | Pandas                    |
+| ------------------------ | ------------------------- |
+| `WHERE Embarked IS NULL` | `df["Embarked"].isnull()` |
+| `SELECT *`               | `df[...]`                 |
+| Result rows              | Filtered DataFrame        |
+
+This similarity is one reason backend engineers often pick up Pandas quickly—they're already familiar with filtering and querying structured data.
+
+
+
+
+-------------------------------------------------------------------------
+
+# What Is Feature Engineering?
+
+Let's define it.
+
+Feature Engineering is the process of creating new, more useful features from existing data.
+
+Think of it like this:
+
+Raw ingredient:
+
+Name
+
+Useful ingredient:
+
+Title
+
+The model doesn't care about:
+
+Owen Harris
+
+But it may care about:
+
+Mr.
+
+because that title carries useful information.
+
+# A Huge AI Lesson
+
+Let's compare two approaches.
+# Beginner:
+
+Name
+
+↓
+
+Text
+
+↓
+
+Drop it
+
+
+# AI Engineer: 
+
+Name
+
+↓
+
+Extract Title
+
+↓
+
+New Feature
+
+↓
+
+Use in Model

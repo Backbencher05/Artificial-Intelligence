@@ -453,6 +453,7 @@ Notice how you resisted saying *"children survived more"* or *"older people surv
 
 
 ------------------------------------------------------------------------------------
+
 # 3: Pclass
 
 # Day 010 Mini Assignment – Pclass Feature Analysis
@@ -667,3 +668,686 @@ Numbers can represent:
 ```
 
 As an AI engineer, one of your first tasks with every dataset is to determine **whether a number is measuring something or merely labeling something**. That decision affects preprocessing, feature engineering, and sometimes even which machine learning algorithm performs best.
+
+
+---------------------------------------------------------------------------------------------------
+
+# Fare
+
+# Day 010 Mini Assignment – Fare Feature Analysis
+
+---
+
+# Q1. Explain each value from `df["Fare"].describe()` in your own words.
+
+Your output:
+
+| Statistic |  Value |
+| --------- | -----: |
+| Count     |    891 |
+| Mean      |  32.20 |
+| Std       |  49.69 |
+| Min       |   0.00 |
+| 25%       |   7.91 |
+| 50%       |  14.45 |
+| 75%       |  31.00 |
+| Max       | 512.33 |
+
+Let's understand each one.
+
+---
+
+## 1. Count = 891
+
+This tells us that **all 891 passengers have a recorded fare**.
+
+Unlike the `Age` column, there are **no missing values** in the Fare column.
+
+---
+
+## 2. Mean = 32.20
+
+The mean is the **average ticket fare**.
+
+Imagine adding the fare paid by every passenger and dividing by 891.
+
+```text
+Total Fare Paid
+----------------
+891 Passengers
+```
+
+The average comes out to approximately:
+
+```text
+32.20
+```
+
+However, as we'll see in Q2, this average is influenced by a few passengers who paid very high fares.
+
+---
+
+## 3. Min = 0.00
+
+The lowest recorded fare is **0**.
+
+This means at least one passenger did not pay any fare.
+
+Possible reasons could include:
+
+* Complimentary travel
+* Employee or crew-related ticket
+* Recording issue
+
+At this stage, we simply observe the value—we don't conclude whether it is correct or incorrect.
+
+---
+
+## 4. 25% = 7.91
+
+If we arrange all fares from lowest to highest:
+
+The first **25%** of passengers paid **₹7.91 or less** (technically, fare units used in the dataset).
+
+This shows that many passengers paid relatively low fares.
+
+---
+
+## 5. 50% = 14.45 (Median)
+
+The median represents the **middle fare**.
+
+If every passenger is arranged from the cheapest ticket to the most expensive:
+
+The passenger exactly in the middle paid approximately:
+
+```text
+14.45
+```
+
+This means:
+
+* Half the passengers paid **less than 14.45**.
+* Half paid **more than 14.45**.
+
+Unlike the mean, the median is **not heavily affected by extremely expensive tickets**.
+
+---
+
+## 6. 75% = 31.00
+
+About **75% of passengers paid ₹31 or less**.
+
+Only the remaining **25%** paid more than ₹31.
+
+This suggests that very expensive tickets were relatively uncommon.
+
+---
+
+## 7. Max = 512.33
+
+The most expensive ticket cost:
+
+```text
+512.33
+```
+
+This is dramatically higher than both the median (14.45) and the average (32.20).
+
+It indicates that a small number of passengers paid exceptionally high fares.
+
+---
+
+## 8. Std = 49.69
+
+The standard deviation measures **how spread out the fares are**.
+
+A value of **49.69** is quite large compared to the mean (32.20), suggesting that ticket prices varied widely—from free tickets to very expensive ones.
+
+---
+
+# Q2. Compare the Mean (≈32.2) and Median (≈14.45).
+
+## Why is the mean much larger than the median?
+
+The mean is much larger because a **small number of passengers paid extremely expensive fares**.
+
+Most passengers paid relatively low fares, but a few passengers paid hundreds of fare units.
+
+These high values **pull the average upward**.
+
+The median, however, depends only on the middle value and is therefore much less affected by these expensive tickets.
+
+---
+
+## What does this suggest about the Fare distribution?
+
+It suggests that the Fare distribution is **positively skewed (right-skewed)**.
+
+In other words:
+
+* Most passengers paid lower fares.
+* A few passengers paid very high fares.
+* Those high fares stretch the distribution toward the right.
+
+A common sign of a right-skewed distribution is:
+
+```text
+Mean > Median
+```
+
+Which is exactly what we observe:
+
+```text
+Mean = 32.20
+
+Median = 14.45
+```
+
+---
+
+# Q3. What does the Fare histogram tell you?
+
+From the histogram, I observe the following:
+
+### 1. Most passengers paid relatively low fares.
+
+The majority of passengers are concentrated in the lower fare ranges.
+
+---
+
+### 2. The distribution is not symmetric.
+
+Instead of looking like a bell-shaped curve, the histogram has a long tail extending toward higher fares.
+
+This indicates a **right-skewed distribution**.
+
+---
+
+### 3. There are a few unusually expensive tickets.
+
+Only a small number of passengers paid very high fares (approaching the maximum of 512.33).
+
+These observations suggest the presence of **high-value observations**, which influence the mean.
+
+At this stage, however, I would not automatically label them as outliers. They may represent genuine first-class passengers.
+
+---
+
+# Q4. List three hypotheses about how Fare might relate to survival.
+
+Since we have not yet analyzed the `Survived` column, these are only hypotheses.
+
+### Hypothesis 1
+
+Passengers who paid higher fares may have had higher survival rates because they may have traveled in better locations on the ship.
+
+---
+
+### Hypothesis 2
+
+Passengers paying very low fares may have belonged mainly to lower passenger classes and may have experienced lower survival rates.
+
+---
+
+### Hypothesis 3
+
+Fare alone may not determine survival. Its relationship with survival may depend on other features such as **Pclass**, **Sex**, and **Age**.
+
+These hypotheses should be tested using the survival data before drawing conclusions.
+
+---
+
+# Q5. Feature Investigation Report – Fare Column
+
+* **Feature Type:** Numerical (Continuous), because fare represents a measurable monetary value and can contain decimal values.
+* **Missing Values:** No missing values are present, making this a complete and reliable feature.
+* **Distribution:** The distribution is **positively (right) skewed**, with most passengers paying relatively low fares and a small number paying very high fares.
+* **Basic Statistics:** The average fare is **32.20**, the median fare is **14.45**, the minimum fare is **0**, and the maximum fare is **512.33**. The standard deviation (**49.69**) indicates considerable variation in ticket prices.
+* **Possible Importance for Machine Learning:** Fare may be an important predictive feature because it could reflect passenger wealth, ticket class, or cabin location, all of which might influence survival. Its predictive value should be evaluated together with other features rather than in isolation.
+
+---
+
+# 🌟 Mentor Feedback
+
+This feature introduces one of the most important concepts in Exploratory Data Analysis:
+
+> **The mean doesn't always tell the full story.**
+
+Imagine these five fares:
+
+```text
+7
+8
+9
+10
+500
+```
+
+The average is:
+
+```text
+106.8
+```
+
+Does **106.8** represent what most passengers paid?
+
+**Not at all.**
+
+Four out of five passengers paid **10 or less**.
+
+That's why AI engineers always look at:
+
+* **Mean**
+* **Median**
+* **Histogram**
+
+**together**, not individually.
+
+A good habit to develop is:
+
+```text
+If Mean ≈ Median
+        ↓
+Distribution is often fairly symmetric.
+
+If Mean >> Median
+        ↓
+Suspect a right-skewed distribution.
+
+If Mean << Median
+        ↓
+Suspect a left-skewed distribution.
+```
+
+This habit will become extremely valuable when you begin **feature engineering**, because skewed numerical features often require special preprocessing before training machine learning models.
+
+
+-----------------------------------------------------------------------------------------
+
+# Embarked Feature Analysis
+
+# Day 010 Mini Assignment – Embarked Feature Analysis
+
+---
+
+# Q1. How many passengers boarded from each port? What percentage does each port represent?
+
+From the Titanic dataset:
+
+| Port  | Full Name   |   Count | Percentage |
+| ----- | ----------- | ------: | ---------: |
+| **S** | Southampton | **644** | **72.44%** |
+| **C** | Cherbourg   | **168** | **18.90%** |
+| **Q** | Queenstown  |  **77** |  **8.66%** |
+
+> **Note:** These percentages are calculated from the **889 non-missing values** (because 2 `Embarked` values are missing), which is exactly what `value_counts(normalize=True)` does by default.
+
+### Observation
+
+* Most passengers (**72.44%**) boarded at **Southampton**.
+* Nearly one-fifth (**18.90%**) boarded at **Cherbourg**.
+* Only **8.66%** boarded at **Queenstown**.
+
+---
+
+# Q2. Why is Embarked considered a nominal categorical feature?
+
+The `Embarked` feature is **categorical** because it represents **categories (boarding ports)** rather than numerical measurements.
+
+The possible values are:
+
+```text id="6l5u5z"
+S → Southampton
+
+C → Cherbourg
+
+Q → Queenstown
+```
+
+It is specifically **nominal** because these categories **do not have any natural order or ranking**.
+
+For example:
+
+* Southampton is not "greater than" Cherbourg.
+* Queenstown is not "less than" Southampton.
+
+These are simply names of locations.
+
+Unlike `Pclass`, where **1st Class > 2nd Class > 3rd Class**, the `Embarked` values cannot be meaningfully ordered.
+
+Therefore, `Embarked` is a **nominal categorical feature**.
+
+---
+
+# Q3. Only 2 values are missing. How is this different from the Cabin column? Why might we handle these two columns differently?
+
+The difference lies in **how much information is missing**.
+
+| Column   | Missing Values | Approximate Percentage |
+| -------- | -------------: | ---------------------: |
+| Cabin    |            687 |                   ~77% |
+| Embarked |              2 |                  ~0.2% |
+
+The **Cabin** column has a very large amount of missing data. Removing every row with a missing cabin would discard most of the dataset, so we need to carefully evaluate options such as feature engineering, creating a "Cabin Available" indicator, or dropping the column if it adds little value.
+
+The **Embarked** column has only two missing values. Because the missing percentage is extremely small, simple solutions are reasonable, such as:
+
+* Filling the missing values with the mode (most common port), or
+* Removing those two rows if appropriate.
+
+The key lesson is that **the percentage of missing data influences the cleaning strategy**. A solution suitable for 0.2% missing data is not necessarily appropriate for 77% missing data.
+
+---
+
+# Q4. What is the mode? Why is the mode commonly used to fill missing values in categorical features?
+
+The **mode** is the value that appears **most frequently** in a dataset.
+
+Example:
+
+```text id="lhyqct"
+IT
+HR
+IT
+Sales
+IT
+```
+
+The mode is:
+
+```text id="h6v9l5"
+IT
+```
+
+because it occurs most often.
+
+For the Titanic dataset, the `Embarked` column has:
+
+```text id="h5qbse"
+S → 644
+
+C → 168
+
+Q → 77
+```
+
+So the mode is:
+
+```text id="rbtol7"
+S (Southampton)
+```
+
+### Why is the mode used for categorical features?
+
+Categorical features cannot be averaged.
+
+For example, calculating the mean of:
+
+```text id="3w7qpm"
+Southampton
+
+Cherbourg
+
+Queenstown
+```
+
+does not make sense.
+
+Instead, we fill missing values with the **most common category**, because it is the most likely value based on the existing data and preserves the categorical nature of the feature.
+
+---
+
+# Q5. Feature Investigation Report – Embarked Column
+
+* **Feature Type:** Categorical (Nominal), representing the port where each passenger boarded the Titanic.
+* **Missing Values:** The column contains only **2 missing values** (approximately **0.2%** of the dataset), indicating excellent data quality.
+* **Distribution:** Most passengers boarded at **Southampton (644, 72.44%)**, followed by **Cherbourg (168, 18.90%)** and **Queenstown (77, 8.66%)**.
+* **Most Common Category:** The mode is **Southampton (`S`)**, making it the most appropriate candidate if simple imputation is required.
+* **Possible Importance for Machine Learning:** The boarding port may capture differences in passenger demographics, ticket class, fare, or travel patterns. Although it may not directly determine survival, it could contribute useful information when combined with other features such as **Pclass**, **Fare**, and **Sex**.
+
+---
+
+# 🌟 Mentor Feedback
+
+This assignment introduces an important principle in data cleaning:
+
+> **Choose the imputation method based on the feature type.**
+
+A simple guideline is:
+
+| Feature Type    | Common Imputation |
+| --------------- | ----------------- |
+| **Numerical**   | Mean or Median    |
+| **Categorical** | Mode              |
+
+Why?
+
+* **Numerical features** represent quantities, so statistics like the mean or median are meaningful.
+* **Categorical features** represent labels, so the most frequent category (mode) is usually the most sensible replacement.
+
+As you progress into machine learning, you'll learn more advanced imputation techniques. However, before applying any method, always ask:
+
+1. **What type of feature is this?**
+2. **How much data is missing?**
+3. **Why might the data be missing?**
+
+Those three questions lead to better preprocessing decisions than simply filling every missing value the same way.
+
+-----------------------------------------------------
+# Name Feature Analysis 
+-----------------------------------------------------
+
+# Day 010 Mini Assignment – Name Feature Analysis
+
+---
+
+# Q1. What is the Name column? Why is it considered a text feature?
+
+The **Name** column contains the **full name of each passenger**.
+
+Example values:
+
+```text
+Braund, Mr. Owen Harris
+Cumings, Mrs. John Bradley
+Heikkinen, Miss. Laina
+Allen, Master. William Henry
+```
+
+It is considered a **text feature** because each value is a string of characters rather than a numerical measurement or a predefined category.
+
+Unlike columns such as:
+
+* `Age` → numerical
+* `Fare` → numerical
+* `Pclass` → categorical
+
+the `Name` column contains free-form text.
+
+---
+
+### Why is it a text feature?
+
+Because names are made up of words and characters.
+
+For example:
+
+```text
+Braund
+Mr.
+Owen
+Harris
+```
+
+These are pieces of text.
+
+A machine learning model cannot directly perform mathematical operations on names.
+
+---
+
+# Q2. From the first 20–30 names you inspect, list all the different titles you notice.
+
+From the first few rows of the Titanic dataset, the common titles include:
+
+```text
+Mr.
+Mrs.
+Miss.
+Master.
+```
+
+As you inspect more names, you may also encounter:
+
+```text
+Dr.
+Rev.
+Col.
+Major.
+Capt.
+Sir.
+Lady.
+Don.
+Mme.
+Mlle.
+Ms.
+Jonkheer.
+Countess.
+```
+
+The exact list depends on how many rows you inspect, but the first four (`Mr.`, `Mrs.`, `Miss.`, `Master.`) are the most common.
+
+---
+
+# Q3. Why might the raw Name column be difficult for a machine learning model to use directly?
+
+The raw `Name` column is difficult for a machine learning model because every passenger's full name is almost unique.
+
+For example:
+
+```text
+Braund, Mr. Owen Harris
+
+Cumings, Mrs. John Bradley
+
+Heikkinen, Miss. Laina
+```
+
+A machine learning model works with patterns that repeat across many records.
+
+If every value is unique, the model cannot easily learn meaningful relationships.
+
+Another challenge is that names are stored as text, while most machine learning algorithms require numerical input.
+
+However, although the full names are not directly useful, they contain hidden information such as:
+
+* Title (`Mr.`, `Mrs.`, `Miss.`)
+* Family name
+* Gender clues
+* Social status
+
+These hidden patterns can be extracted and converted into useful features.
+
+---
+
+# Q4. Explain Feature Engineering in your own words.
+
+### What is Feature Engineering?
+
+Feature Engineering is the process of **creating better features from the existing data so that a machine learning model can learn more useful patterns**.
+
+Instead of using the raw data exactly as it appears, we transform or extract information that better represents the problem.
+
+In simple words:
+
+> **Feature Engineering means improving the data before giving it to the machine learning model.**
+
+---
+
+### Why is extracting the Title from Name an example of Feature Engineering?
+
+The raw `Name` column contains a lot of information mixed together.
+
+Example:
+
+```text
+Braund, Mr. Owen Harris
+```
+
+Instead of giving the entire name to the model, we can extract only:
+
+```text
+Mr.
+```
+
+Now the model receives a much simpler and more meaningful feature.
+
+Similarly:
+
+```text
+Mrs.
+
+Miss.
+
+Master.
+
+Dr.
+```
+
+These titles may indicate:
+
+* Gender
+* Age group
+* Marital status
+* Social status
+
+All of these could potentially influence survival.
+
+So we transformed one complex text column into a simpler categorical feature.
+
+That transformation is **feature engineering**.
+
+---
+
+# Q5. Feature Investigation Report – Name Column
+
+* **Feature Type:** Text feature containing the full names of passengers.
+* **Missing Values:** No missing values are present, indicating complete data quality.
+* **Why Raw Names Are Difficult for ML:** Most names are unique and stored as text, making them unsuitable for direct use by most machine learning algorithms. They also cannot be used directly in mathematical computations.
+* **Hidden Information Inside the Names:** The names contain valuable information such as titles (`Mr.`, `Mrs.`, `Miss.`, `Master.`), family names, and possible indicators of gender or social status.
+* **Possible Engineered Features:** Useful features that could be extracted include the passenger's title, surname, family size (combined with other columns), name length, and whether a passenger belongs to a shared family group.
+
+---
+
+# 🌟 Mentor Feedback
+
+This assignment marks an important shift in your AI journey.
+
+Until now, you've been **analyzing existing features**.
+
+Now you're learning how to **create new features**.
+
+Think about this transformation:
+
+```text
+Raw Feature
+        ↓
+Name
+        ↓
+Feature Engineering
+        ↓
+Title
+        ↓
+Machine Learning Model
+```
+
+Notice that the model doesn't become smarter by itself—you make the **input data smarter**.
+
+As a backend engineer, you can think of feature engineering like building a better API response:
+
+* The database may store raw, detailed information.
+* Before sending it to the frontend, you transform it into a cleaner, more useful format.
+
+Feature engineering follows the same idea: **transform raw data into features that are easier and more meaningful for a machine learning model to learn from**. This is one of the highest-impact skills in practical AI because better features often improve model performance more than simply choosing a more complex algorithm.
+
+
