@@ -1350,4 +1350,234 @@ As a backend engineer, you can think of feature engineering like building a bett
 
 Feature engineering follows the same idea: **transform raw data into features that are easier and more meaningful for a machine learning model to learn from**. This is one of the highest-impact skills in practical AI because better features often improve model performance more than simply choosing a more complex algorithm.
 
+----------------------------------
+# Cabin Feature Engineering
+------------------------------------------
 
+# Day 010 Mini Assignment – Cabin Feature Analysis
+
+---
+
+# Q1. What is the Cabin column? What information might it contain besides the cabin number?
+
+The **Cabin** column contains the **cabin assigned to a passenger** on the Titanic.
+
+Example values:
+
+```text id="a4wq8y"
+C85
+B28
+E46
+D33
+```
+
+At first glance, it looks like just a cabin number, but it actually contains more information.
+
+For example:
+
+```text id="qk8k1u"
+C85
+```
+
+can be interpreted as:
+
+* **C** → Deck C
+* **85** → Cabin number on that deck
+
+Similarly:
+
+```text id="0e0f6l"
+B28
+```
+
+means:
+
+* **B** → Deck B
+* **28** → Cabin number
+
+So the Cabin column may provide information about:
+
+* Which **deck** the passenger stayed on.
+* Approximate **location** of the cabin.
+* Possible proximity to lifeboats or exits.
+* Indirect indication of **ticket class** or **wealth**, since higher-class passengers were more likely to have assigned cabins.
+
+Therefore, the Cabin column contains much more than just an identifier.
+
+---
+
+# Q2. The column has about 77% missing values. List at least three possible options an AI engineer could consider for handling this feature.
+
+Since approximately **77% of the values are missing**, I would consider multiple approaches before making a decision.
+
+### Option 1: Drop the Cabin column
+
+If the missing data is too extensive and the remaining information provides little predictive value, removing the column may be appropriate.
+
+---
+
+### Option 2: Extract the Deck Letter
+
+Instead of using the full cabin value:
+
+```text id="s1b5j9"
+C85
+```
+
+extract only:
+
+```text id="1tgj5y"
+C
+```
+
+This reduces complexity and may capture useful information about the passenger's location on the ship.
+
+---
+
+### Option 3: Create a "Cabin Available" Feature
+
+Rather than focusing on the cabin itself, create a new feature such as:
+
+```text id="1t4a1i"
+CabinAvailable
+
+Yes
+No
+```
+
+Whether a cabin is recorded might itself contain useful information.
+
+---
+
+### Option 4: Investigate the Missingness
+
+Before dropping or filling values, determine whether missing cabins are associated with passenger class, fare, or survival.
+
+If the missingness is not random, it may carry predictive information.
+
+---
+
+### Option 5: Combine with Other Features
+
+Use the Cabin information together with:
+
+* Pclass
+* Fare
+* Embarked
+
+to build richer features.
+
+---
+
+# Q3. Why might dropping the Cabin column immediately be a bad idea?
+
+Although the Cabin column has many missing values, dropping it immediately could result in losing valuable information.
+
+The non-missing cabin values may reveal:
+
+* Passenger deck.
+* Cabin location.
+* Socioeconomic status.
+* Possible proximity to evacuation routes.
+
+Even the **fact that cabin information is missing** may be meaningful.
+
+For example:
+
+If most passengers without cabin information belong to **3rd Class**, then "missing cabin" itself becomes an informative feature.
+
+Therefore, before removing the column, I would first investigate whether it contains useful predictive patterns.
+
+---
+
+# Q4. How is extracting the deck letter (e.g., C from C85) an example of feature engineering?
+
+Feature engineering means transforming raw data into a form that is more useful for a machine learning model.
+
+Consider:
+
+```text id="lh71gl"
+C85
+```
+
+The full cabin number is very specific and nearly unique.
+
+A model is unlikely to learn much from every individual cabin number.
+
+Instead, we extract:
+
+```text id="y6wgmz"
+C
+```
+
+Now many passengers can share the same deck.
+
+For example:
+
+```text id="n8w7eh"
+C85
+
+C123
+
+C45
+
+C62
+```
+
+All become:
+
+```text id="b5mofw"
+Deck C
+```
+
+This creates a simpler, more general feature that may capture meaningful patterns.
+
+Instead of learning from hundreds of unique cabin numbers, the model learns from a small set of deck categories.
+
+That transformation—from raw cabin values to deck labels—is an example of **feature engineering**.
+
+---
+
+# Q5. Feature Investigation Report – Cabin Column
+
+* **Feature Type:** Text feature containing cabin identifiers assigned to passengers.
+* **Missing Values:** Approximately **687 out of 891 values (about 77%)** are missing, making it the column with the highest proportion of missing data in the dataset.
+* **Hidden Information:** Cabin values may reveal the passenger's deck, cabin location, and indirectly reflect ticket class or socioeconomic status.
+* **Possible Feature Engineering Ideas:** Extract the deck letter, create a binary feature indicating whether cabin information exists, group rare decks together, or analyze cabin availability alongside other features such as `Pclass` and `Fare`.
+* **Possible Importance for Machine Learning:** Although the raw Cabin values are sparse and difficult to use directly, engineered features derived from the column may provide useful information about passenger location and travel conditions, which could potentially improve survival prediction.
+
+---
+
+# 🌟 Mentor Feedback
+
+The biggest lesson from this feature is:
+
+> **High missing values do not automatically mean a feature is useless.**
+
+Many beginners see:
+
+```text id="u8jpwa"
+77% Missing
+```
+
+and immediately think:
+
+```text id="m5f4a8"
+Drop the column.
+```
+
+An experienced AI engineer thinks differently:
+
+```text id="k6p4kg"
+77% Missing
+        ↓
+Why is it missing?
+        ↓
+Is the missingness informative?
+        ↓
+Can I extract something useful?
+        ↓
+Then decide what to do.
+```
+
+This mindset is especially important because, in real-world datasets, **missingness itself can carry information**. For example, in the Titanic dataset, not having a recorded cabin may be related to passenger class or ticket type. By investigating before removing the column, you avoid throwing away potentially valuable signals that a machine learning model could use.
