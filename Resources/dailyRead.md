@@ -1220,3 +1220,70 @@ Whenever you see `normalize=True`, remember this simple rule:
 
 As an AI engineer, you'll use the normalized version frequently because **percentages make it much easier to understand class balance**, which is important for tasks like checking whether a classification dataset is imbalanced before training a model.
 
+
+
+--------------------------------------------------------------------
+# There Are Different Types of AI Problems
+
+This is something we'll study in Machine Learning, but I'll introduce it now.
+
+When you receive a dataset, one of your first questions should be:
+
+"What type of problem is this?"
+
+For example:
+
+Dataset
+      ↓
+What is the goal?
+
+It might be:
+
+Predict Something
+Will customer churn?
+
+Yes/No
+
+# Machine Learning Type: Supervised Learning (Classification)
+
+Predict a Number
+House Price
+
+# Machine Learning Type: Supervised Learning (Regression)
+
+Find Groups
+Group similar customers.
+
+# Machine Learning Type: Unsupervised Learning (Clustering)
+
+Detect Fraud
+Find unusual transactions.
+
+# Machine Learning Type: Anomaly Detection
+
+
+
+---------------------------------------------------------------
+This is a concept many beginners miss.
+
+They think:
+
+"I learned crosstab(), so I'll use it everywhere."
+
+No.
+
+The analysis depends on the feature type.
+# function we can use 
+ Categorical
+        ↓
+    Counts
+   Crosstab
+   Bar Charts
+
+Continuous
+        ↓
+Statistics
+Histograms
+Boxplots
+Group Means
+Distributions
