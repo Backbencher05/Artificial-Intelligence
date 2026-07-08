@@ -1,0 +1,6 @@
+# Note:
+Read this in last after complete investigation you will understand the defination
+
+# Q5. Explain EDA to a junior engineer
+
+Exploratory Data Analysis (EDA) is the process of understanding a dataset before using it to train a machine learning model. The goal is to learn what each feature represents, identify data quality issues, and discover meaningful patterns in the data. During the Titanic project, I started by understanding the domain and the meaning of every column before writing any analysis code. I then inspected the dataset, checked data types, missing values, distributions, and summary statistics to understand the quality of the data. After that, I analyzed each feature individually and then studied how different features were associated with the target variable, `Survived`. I also investigated relationships between features, such as `Fare` and `Pclass`, to understand how they interacted. Throughout the process, I focused on making observations and forming hypotheses instead of jumping directly to conclusions. Finally, EDA helped me decide which features should be kept, cleaned, engineered, or removed before training a machine learning model. In short, EDA transforms raw data into well-understood, high-quality data, giving the machine learning model a much better foundation for learning useful patterns.
