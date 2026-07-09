@@ -50,3 +50,32 @@ Week 4
 • PCA
 • Pipelines
 • Model Deployment Preparation
+
+-------------------------------------------
+# Our Learning Roadmap (High Level)
+
+This folder structure aligns with the journey ahead:
+
+Machine Learning Foundations
+Supervised Learning
+Regression
+Classification
+Evaluation Metrics
+Feature Engineering
+Data Preprocessing
+Ensemble Methods
+Unsupervised Learning
+Model Selection & Hyperparameter Tuning
+End-to-End ML Projects
+ML Deployment & MLOps Foundations
+
+Each section will produce:
+
+📖 Handbook notes
+🧠 Daily reasoning exercises
+💻 Python implementations
+📊 Visualizations
+📁 Case studies
+🚀 Portfolio-ready projects
+
+This mirrors how ML engineers organize their work while keeping your repository clean, scalable, and easy to revisit months or even years later.
