@@ -555,9 +555,9 @@ I want you to first develop the instinct to ask:
 Once that instinct is natural, the formal ML terminology will feel like names for ideas you already understand, rather than definitions to memorize.
 
 
-
+--------------------------------------------------------------------------------------------------------------------------
 # Answers feedback and Next
--------------------------------------
+-----------------------------------------------------------------------------------------------------------------
 
 Excellent work. I read through your complete submission. 
 
